@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FiExternalLink, FiGithub, FiImage } from "react-icons/fi";
 import Badge from "../common/Badge";
 import { profile } from "../../data/profile";
+import { card, projectLink, tagList } from "../../styles/classes";
 
 /**
  * Card for the projects grid. Shows a thumbnail when available,
@@ -15,64 +16,68 @@ export default function ProjectCard({ project }) {
   const showImage = image && !imgError;
 
   return (
-    <article className="card project-card">
+    <article className={`${card} flex flex-col`}>
       <Link
         to={`/projects/${id}`}
-        className="project-thumb-link"
+        className="block"
         aria-label={`View ${title} case study`}
       >
         {showImage ? (
           <img
-            className="project-thumb"
+            className="aspect-video w-full object-cover bg-accent-soft"
             src={image}
             alt={`${title} screenshot`}
             loading="lazy"
             onError={() => setImgError(true)}
           />
         ) : (
-          <div className="project-thumb-fallback" aria-hidden="true">
-            <FiImage className="fallback-icon" />
-            <span className="fallback-name">{title}</span>
-            <span className="muted fallback-hint">screenshot coming soon</span>
+          <div
+            className="aspect-video w-full flex flex-col items-center justify-center gap-2 text-accent"
+            style={{ background: "linear-gradient(135deg, var(--accent-soft), transparent)" }}
+            aria-hidden="true"
+          >
+            <FiImage className="text-4xl" />
+            <span className="font-display font-bold text-[1.05rem] text-body">{title}</span>
+            <span className="text-muted text-xs">screenshot coming soon</span>
           </div>
         )}
       </Link>
 
-      <div className="project-body">
+      <div className="p-6 flex flex-col gap-4 flex-1">
         <div>
-          <h3 className="project-title">
-            <Link to={`/projects/${id}`} className="project-title-link">
+          <h3 className="m-0 text-[1.15rem]">
+            <Link to={`/projects/${id}`} className="text-body hover:text-accent transition-colors duration-300">
               {title}
             </Link>
           </h3>
-          <p className="project-subtitle">{subtitle}</p>
+          <p className="text-[0.85rem] text-muted mt-0.5 mb-0">{subtitle}</p>
         </div>
 
-        <p className="project-desc">{short}</p>
+        <p className="text-[0.93rem] m-0">{short}</p>
 
-        <div className="project-tags">
+        <div className={tagList}>
           {tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
 
-        <div className="project-links">
-          <Link to={`/projects/${id}`} className="project-link">
+        <div className="flex gap-4 mt-auto">
+          <Link to={`/projects/${id}`} className={projectLink}>
             Case study →
           </Link>
           {liveUrl ? (
-            <a className="project-link" href={liveUrl} target="_blank" rel="noreferrer">
+            <a className={projectLink} href={liveUrl} target="_blank" rel="noreferrer">
               <FiExternalLink aria-hidden="true" /> Live
             </a>
           ) : null}
           {repoUrl ? (
-            <a className="project-link" href={repoUrl} target="_blank" rel="noreferrer">
+            <a className={projectLink} href={repoUrl} target="_blank" rel="noreferrer">
               <FiGithub aria-hidden="true" /> Code
             </a>
           ) : null}
           {!liveUrl && !repoUrl ? (
             <a
-              className="project-link"
+              className={projectLink}
               href={profile.socials.github}
               target="_blank"
               rel="noreferrer"

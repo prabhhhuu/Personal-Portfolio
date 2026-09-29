@@ -3,7 +3,7 @@ import useScrollReveal from "../../hooks/useScrollReveal";
 
 /**
  * Fades/slides children in when they enter the viewport.
- * direction: "up" | "left" | "right" — pairs with classes in animations.css
+ * direction: "up" | "left" | "right" — pairs with reveal classes in index.css
  */
 export default function SectionReveal({ children, direction = "up", delay = 0, className = "" }) {
   const { ref, visible } = useScrollReveal();

@@ -9,13 +9,13 @@ export default function SkillBar({ name, level }) {
   const { ref, visible } = useScrollReveal({ threshold: 0.4 });
 
   return (
-    <div className="skill-row" ref={ref}>
-      <div className="skill-label">
+    <div className="mb-4 last:mb-0" ref={ref}>
+      <div className="flex justify-between text-[0.88rem] mb-1.5 text-body">
         <span>{name}</span>
-        <span className="muted">{level}%</span>
+        <span className="text-muted text-[0.8rem]">{level}%</span>
       </div>
       <div
-        className="skill-track"
+        className="h-2 rounded-full bg-accent-soft overflow-hidden"
         role="progressbar"
         aria-valuenow={level}
         aria-valuemin={0}

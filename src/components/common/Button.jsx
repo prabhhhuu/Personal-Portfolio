@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { btn } from "../../styles/classes";
 
 /**
  * Shared button. Renders a Link (internal), anchor (external), or button.
@@ -13,7 +14,7 @@ export default function Button({
   children,
   ...rest
 }) {
-  const classes = `btn btn-${variant} ${className}`.trim();
+  const classes = `${btn.base} ${btn[variant] || ""} ${className}`.trim();
 
   if (to) {
     return (

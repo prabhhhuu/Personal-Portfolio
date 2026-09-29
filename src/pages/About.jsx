@@ -6,11 +6,12 @@ import TimelineItem from "../components/about/TimelineItem";
 import { profile } from "../data/profile";
 import { skillGroups } from "../data/skills";
 import { timeline, certifications } from "../data/timeline";
+import { sectionTitle } from "../styles/classes";
 
 export default function About() {
   return (
-    <div className="page">
-      <div className="container">
+    <div className="pt-[calc(62px+4rem)] min-h-screen">
+      <div className="w-full max-w-shell mx-auto px-6">
         <SectionReveal>
           <SectionHeading
             kicker="About"
@@ -19,14 +20,14 @@ export default function About() {
           />
         </SectionReveal>
 
-        <div className="about-grid">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-16 items-start mb-16">
           <SectionReveal direction="left">
             <div className="about-bio">
               {profile.bio.map((paragraph) => (
                 <p key={paragraph.slice(0, 24)}>{paragraph}</p>
               ))}
-              <h3 className="cert-title">Certifications</h3>
-              <ul className="cert-list">
+              <h3 className="mt-10">Certifications</h3>
+              <ul className="[&>li]:relative [&>li]:pl-5 [&>li]:text-muted [&>li]:mb-2 [&>li]:text-[0.93rem] cert-list">
                 {certifications.map((cert) => (
                   <li key={cert}>{cert}</li>
                 ))}
@@ -38,8 +39,11 @@ export default function About() {
             <div className="about-skills">
               <h3>Skills</h3>
               {skillGroups.map((group) => (
-                <div className="skill-group" key={group.id}>
-                  <h4 className="skill-group-title">{group.title}</h4>
+                <div
+                  className="bg-elevated border border-line rounded-card p-6"
+                  key={group.id}
+                >
+                  <h4 className="text-base mb-4">{group.title}</h4>
                   {group.skills.map((skill) => (
                     <SkillBar key={skill.name} name={skill.name} level={skill.level} />
                   ))}
@@ -50,13 +54,13 @@ export default function About() {
         </div>
 
         <SectionReveal>
-          <div className="section-head" style={{ marginTop: "var(--space-6)" }}>
-            <h2 className="section-title">Education & experience</h2>
-            <p className="section-subtitle">
+          <div className="mb-10 mt-16">
+            <h2 className={sectionTitle}>Education &amp; experience</h2>
+            <p className="max-w-[620px]">
               Internships, open-source work, and education — newest first.
             </p>
           </div>
-          <ul className="timeline">
+          <ul className="timeline relative pl-6">
             {timeline.map((entry) => (
               <TimelineItem key={entry.id} entry={entry} />
             ))}
