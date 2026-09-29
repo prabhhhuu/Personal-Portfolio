@@ -12,7 +12,7 @@ export const profile = {
   ],
   socials: {
     github: "https://github.com/prabhhhuu",
-    linkedin: "https://linkedin.com/in/sakthi-prabhu",
+    linkedin: "https://www.linkedin.com/in/sakthiprabhuraja/",
     email: "mailto:rsakthiprabhu2005@gmail.com",
   },
   resumePath: "/resume.pdf",
