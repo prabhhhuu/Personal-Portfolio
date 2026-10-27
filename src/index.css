@@ -260,7 +260,7 @@
     background-image: var(--hero-glow);
   }
 
-  /* Scroll-reveal states (toggled by useScrollReveal) */
+/* Scroll-reveal states (toggled by useScrollReveal) */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -279,5 +279,15 @@
   .reveal-visible {
     opacity: 1;
     transform: translate(0, 0);
+  }
+}
+
+/* ---------- Keyframes ----------
+   Defined here at the top level because tailwind.config.js only emits
+   keyframes when a matching animate-* utility class appears in markup,
+   and the avatar ring applies its animation inside .avatar-ring::before. */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
   }
 }
