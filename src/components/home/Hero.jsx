@@ -23,8 +23,12 @@ export default function Hero({ compact = false }) {
     );
   }
 
+  // Top padding clears the 64px fixed navbar before the name starts.
   return (
-    <section className="flex flex-col pt-14 lg:pt-20" aria-label="Introduction">
+    <section
+      className="flex flex-col pt-[calc(64px+1.75rem)] lg:pt-[calc(64px+2.5rem)]"
+      aria-label="Introduction"
+    >
       <div className="flex-1 flex items-center pb-16 lg:pb-20">
         <div className="w-full max-w-shell mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-10 lg:gap-14 items-center">
           <div>
