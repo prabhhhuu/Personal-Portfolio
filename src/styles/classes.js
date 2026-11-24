@@ -11,7 +11,7 @@ export const btn = {
     "border cursor-pointer transition-all duration-300 ease-signal " +
     "active:translate-y-px disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none",
   primary:
-    "border-transparent bg-accent text-white hover:bg-accent-strong hover:text-white hover:-translate-y-0.5 hover:shadow-md",
+    "border-transparent bg-accent text-on-accent hover:bg-accent-strong hover:text-on-accent hover:-translate-y-0.5 hover:shadow-md",
   outline:
     "border-line text-body bg-transparent hover:border-accent hover:text-accent hover:-translate-y-0.5",
   ghost: "border-transparent text-muted bg-transparent hover:text-accent",
@@ -33,8 +33,7 @@ export const projectLink = "inline-flex items-center gap-1.5 text-sm font-semibo
 
 export const sectionTitle = "section-title flex items-center gap-4 mb-2";
 
-export const heroGreeting =
-  "text-accent font-semibold tracking-[0.04em] uppercase text-[0.85rem] mb-4 mt-2.5";
+export const heroGreeting = "kicker mb-4 mt-2.5";
 
 export const tagList = "flex flex-wrap gap-1.5";
 

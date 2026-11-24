@@ -26,38 +26,42 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur: 300ms;
 
-  /* Light theme (default) */
-  --bg: #f7f8fa;
-  --bg-elevated: #ffffff;
-  --text: #16181d;
-  --text-muted: #5a6070;
-  --accent: #4f46e5;
-  --accent-strong: #4338ca;
-  --accent-soft: rgba(79, 70, 229, 0.1);
-  --border: #e3e6ec;
+  /* Light theme (default) — warm paper, ink text, ember accent */
+  --bg: #f7f4ed;
+  --bg-elevated: #fffdf7;
+  --text: #171410;
+  --text-muted: #6a6455;
+  --accent: #c2410c;
+  --accent-strong: #97350a;
+  --on-accent: #fffdf7;
+  --accent-soft: rgba(194, 65, 12, 0.1);
+  --border: #e3dccd;
+  --dot: rgba(23, 20, 16, 0.06);
   --hero-glow: radial-gradient(
-    600px circle at 85% 10%,
-    rgba(79, 70, 229, 0.1),
-    transparent 60%
+    640px circle at 84% 8%,
+    rgba(194, 65, 12, 0.12),
+    transparent 62%
   );
 }
 
 [data-theme="dark"] {
-  --bg: #0b0c10;
-  --bg-elevated: #15161c;
-  --text: #f2f3f5;
-  --text-muted: #9aa0ae;
-  --accent: #818cf8;
-  --accent-strong: #a5b4fc;
-  --accent-soft: rgba(129, 140, 248, 0.14);
-  --border: #262833;
+  --bg: #0d0c0a;
+  --bg-elevated: #17140f;
+  --text: #f5f1e6;
+  --text-muted: #a49c8a;
+  --accent: #ff8a5b;
+  --accent-strong: #ffb392;
+  --on-accent: #1a1109;
+  --accent-soft: rgba(255, 138, 91, 0.13);
+  --border: #2c2720;
+  --dot: rgba(255, 255, 255, 0.05);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.55);
   --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.6);
   --hero-glow: radial-gradient(
-    600px circle at 85% 10%,
-    rgba(129, 140, 248, 0.14),
-    transparent 60%
+    640px circle at 84% 8%,
+    rgba(255, 138, 91, 0.15),
+    transparent 62%
   );
 }
 
@@ -93,11 +97,14 @@
 
   body {
     margin: 0;
-    font-family: "Inter", "Segoe UI", sans-serif;
+    font-family: "Instrument Sans", "Segoe UI", sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: var(--text);
     background-color: var(--bg);
+    /* Fine dot grid — atmosphere instead of a flat fill. */
+    background-image: radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0);
+    background-size: 26px 26px;
     -webkit-font-smoothing: antialiased;
     transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
   }
@@ -106,14 +113,17 @@
   h2,
   h3,
   h4 {
-    font-family: "Space Grotesk", "Segoe UI", sans-serif;
-    line-height: 1.15;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-variation-settings: "opsz" 96;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
     margin: 0 0 var(--space-3);
     color: var(--text);
   }
 
   h1 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-size: clamp(2.4rem, 5.6vw, 3.8rem);
   }
 
   h2 {
@@ -206,11 +216,31 @@
     animation: spin-slow 14s linear infinite;
   }
 
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .kicker::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+    flex: none;
+  }
+
   .section-title::after {
     content: "";
     flex: 1;
     height: 1px;
-    background: var(--border);
+    background: linear-gradient(90deg, var(--border), transparent 85%);
   }
 
   .cert-list li::before {
@@ -238,7 +268,7 @@
   }
 
   .notfound-code {
-    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    font-family: "Fraunces", Georgia, serif;
     font-size: clamp(5rem, 18vw, 9rem);
     font-weight: 700;
     line-height: 1;

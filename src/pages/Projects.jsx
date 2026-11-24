@@ -5,11 +5,11 @@ import ProjectCard from "../components/projects/ProjectCard";
 import { projects, allFilterTags } from "../data/projects";
 
 const chip =
-  "px-4 py-[7px] rounded-full border border-line bg-elevated text-muted text-[0.88rem] font-semibold " +
+  "px-4 py-[7px] rounded-full border border-line bg-elevated text-muted font-mono text-[0.78rem] font-medium tracking-[0.06em] uppercase " +
   "cursor-pointer transition-all duration-300 ease-signal " +
   "hover:border-accent hover:text-accent hover:-translate-y-0.5";
 
-const chipActive = "bg-accent border-accent text-white";
+const chipActive = "bg-accent border-accent text-on-accent";
 
 export default function Projects() {
   const [filter, setFilter] = useState("All");

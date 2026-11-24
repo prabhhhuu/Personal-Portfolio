@@ -15,11 +15,13 @@ module.exports = {
         accent: "var(--accent)",
         "accent-strong": "var(--accent-strong)",
         "accent-soft": "var(--accent-soft)",
+        "on-accent": "var(--on-accent)",
         line: "var(--border)",
       },
       fontFamily: {
-        display: ["Space Grotesk", "Segoe UI", "sans-serif"],
-        body: ["Inter", "Segoe UI", "sans-serif"],
+        display: ["Fraunces", "Georgia", "serif"],
+        body: ["Instrument Sans", "Segoe UI", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
       maxWidth: {
         shell: "1140px",

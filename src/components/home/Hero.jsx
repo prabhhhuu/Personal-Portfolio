@@ -54,10 +54,12 @@ export default function Hero({ compact = false }) {
           <div className="flex gap-10 flex-wrap max-lg:justify-center">
             {stats.map((stat) => (
               <div className="hero-stat" key={stat.label}>
-                <div className="font-display text-2xl font-bold text-body">
+                <div className="font-display text-[1.9rem] font-semibold leading-none text-body">
                   {stat.value}
                 </div>
-                <div className="text-[0.85rem] text-muted">{stat.label}</div>
+                <div className="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-muted mt-2">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>

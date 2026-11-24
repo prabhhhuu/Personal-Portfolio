@@ -9,6 +9,39 @@
 
 export const projects = [
   {
+    id: "rendify",
+    title: "Rendify — AI Floor-Plan Renderer",
+    subtitle: "React Router · TypeScript · Puter AI",
+    tags: ["React Router", "TypeScript", "AI"],
+    filterTags: ["React", "AI"],
+    image: "/assets/projects/rendify/cover.svg",
+    gallery: [],
+    liveUrl: "https://puter.com/app/rendify",
+    repoUrl: "https://github.com/prabhhhuu/rendify",
+    featured: true,
+
+    short:
+      "An AI design tool that turns a 2D floor plan into a photorealistic top-down 3D render, with a before/after comparison and saved project history.",
+
+    problem:
+      "A floor plan is hard for anyone but an architect to read — flat lines give no sense of materials, furniture or light. Producing a rendered view normally means opening a modelling tool and spending hours rebuilding the same walls.",
+
+    approach:
+      "Built a React Router app in TypeScript with Tailwind CSS v4 and server-side rendering. Uploads are drag-and-drop with client-side type and 10 MB checks, a progress indicator and explicit error states. The plan is sent to Gemini's image model through Puter.js with an engineered prompt that forbids any text or new geometry, locks walls, doors and windows to the plan's exact lines, and maps fixture icons to realistic furniture. Projects and renders persist per user in Puter's file storage, so the dashboard restores history on sign-in, and each project opens a visualizer with a before/after comparison slider.",
+
+    result:
+      "A working AI visualizer that produces a furnished, top-down render of a plan in seconds — and keeps every project revisitable afterwards, so it behaves like a small product rather than a one-off image demo.",
+
+    highlights: [
+      "Prompt engineered to lock wall/door geometry and strip all text",
+      "Drag-and-drop upload with validation, progress and error states",
+      "Before/after compare slider over the original plan",
+      "Per-user project history in Puter storage; SSR via React Router",
+    ],
+
+    stack: ["React Router", "TypeScript", "Tailwind CSS v4", "Puter.js", "Gemini Image Model", "Vite"],
+  },
+  {
     id: "code-sensei",
     title: "Code Sensei — AI Coding Tutor",
     subtitle: "Flask · Groq LLMs",
