@@ -140,7 +140,7 @@ export default function ContactForm() {
 
       {status === "success" ? (
         <p
-          className="px-3.5 py-3 rounded text-[0.92rem] mb-0 bg-[rgba(46,160,67,0.12)] text-[#2ea043] border border-[rgba(46,160,67,0.4)]"
+          className="px-3.5 py-3 rounded-none text-[0.92rem] mb-0 bg-[color-mix(in_srgb,#2ea043_12%,transparent)] text-[#2ea043] border border-[color-mix(in_srgb,#2ea043_40%,transparent)]"
           role="status"
         >
           <FiCheckCircle aria-hidden="true" /> Thanks! Your message has been sent — I'll get back
@@ -149,7 +149,7 @@ export default function ContactForm() {
       ) : null}
       {status === "error" ? (
         <p
-          className="px-3.5 py-3 rounded text-[0.92rem] mb-0 bg-[rgba(229,72,77,0.1)] text-[#e5484d] border border-[rgba(229,72,77,0.4)]"
+          className="px-3.5 py-3 rounded-none text-[0.92rem] mb-0 bg-[color-mix(in_srgb,#e5484d_10%,transparent)] text-[#e5484d] border border-[color-mix(in_srgb,#e5484d_40%,transparent)]"
           role="alert"
         >
           <FiXCircle aria-hidden="true" /> Something went wrong. Please try again, or email me
@@ -162,7 +162,7 @@ export default function ContactForm() {
           {status === "sending" ? (
             <>
               <span
-                className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin"
+                className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin"
                 aria-hidden="true"
               />{" "}
               Sending…

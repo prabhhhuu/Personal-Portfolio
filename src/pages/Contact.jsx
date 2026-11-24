@@ -9,12 +9,11 @@ import { btn } from "../styles/classes";
 
 export default function Contact() {
   return (
-    <div className="pt-[calc(62px+4rem)] min-h-screen">
+    <div className="pt-[calc(64px+3.5rem)] min-h-screen">
       <div className="w-full max-w-shell mx-auto px-6">
         <SectionReveal>
           <SectionHeading
-            kicker="Contact"
-            title="Let's build something"
+            title="Contact"
             subtitle="Open to full-time roles, internships, and freelance work. The fastest way to reach me is email — or drop a message here."
           />
         </SectionReveal>

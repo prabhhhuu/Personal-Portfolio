@@ -4,7 +4,7 @@ import { FiArrowLeft, FiExternalLink, FiGithub, FiImage } from "react-icons/fi";
 import Badge from "../components/common/Badge";
 import SectionReveal from "../components/common/SectionReveal";
 import { getProjectById, projects } from "../data/projects";
-import { btn, projectLink, tagList, card, heroGreeting } from "../styles/classes";
+import { btn, projectLink, tagList, card } from "../styles/classes";
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -13,7 +13,7 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="pt-[calc(62px+4rem)] min-h-screen">
+      <div className="pt-[calc(64px+3.5rem)] min-h-screen">
         <div className="w-full max-w-shell mx-auto px-6 min-h-[70vh] flex flex-col items-center justify-center text-center gap-4">
           <h1>Project not found</h1>
           <p className="text-muted">That case study doesn't exist — it may have been renamed.</p>
@@ -28,16 +28,16 @@ export default function ProjectDetail() {
   const others = projects.filter((p) => p.id !== project.id).slice(0, 3);
 
   return (
-    <div className="pt-[calc(62px+4rem)] min-h-screen">
+    <div className="pt-[calc(64px+3.5rem)] min-h-screen">
       <article className="w-full max-w-shell mx-auto px-6">
         <SectionReveal>
           <Link to="/projects" className={`${projectLink} inline-flex mb-6`}>
             <FiArrowLeft aria-hidden="true" /> All projects
           </Link>
 
-          <header className="border-b border-line pb-10 mb-10">
-            <p className={heroGreeting}>{project.subtitle}</p>
-            <h1>{project.title}</h1>
+          <header className="border-b border-line pb-6 mb-8">
+            <h1 className="m-0">{project.title}</h1>
+            <p className="annotation mt-2 mb-4">{project.subtitle}</p>
             <div className={tagList}>
               {project.tags.map((tag) => (
                 <Badge key={tag}>{tag}</Badge>
@@ -47,7 +47,7 @@ export default function ProjectDetail() {
         </SectionReveal>
 
         <SectionReveal>
-          <div className="rounded-card overflow-hidden border border-line mb-10 bg-accent-soft">
+          <div className="overflow-hidden border border-line mb-10 bg-elevated">
             {project.image && !imgError ? (
               <img
                 src={project.image}
@@ -107,9 +107,9 @@ export default function ProjectDetail() {
 
           <aside>
             <SectionReveal direction="right">
-              <div className="flex flex-col gap-4 bg-elevated border border-line rounded-card p-6 h-fit">
+              <div className="flex flex-col gap-5 bg-elevated border border-line p-6 h-fit">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.06em] text-muted font-semibold mb-0">
+                  <p className="annotation mb-2">
                     Stack
                   </p>
                   <div className={tagList}>
@@ -119,7 +119,7 @@ export default function ProjectDetail() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.06em] text-muted font-semibold mb-0">
+                  <p className="annotation mb-2">
                     Links
                   </p>
                   <div className="flex flex-col items-start gap-4">
@@ -141,7 +141,7 @@ export default function ProjectDetail() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.06em] text-muted font-semibold mb-0">
+                  <p className="annotation mb-2">
                     Highlights
                   </p>
                   <ul className="timeline-points flex flex-col gap-1">

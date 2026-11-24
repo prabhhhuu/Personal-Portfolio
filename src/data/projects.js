@@ -10,8 +10,8 @@
 export const projects = [
   {
     id: "rendify",
-    title: "Rendify — AI Floor-Plan Renderer",
-    subtitle: "React Router · TypeScript · Puter AI",
+    title: "Rendify",
+    subtitle: "AI floor-plan renderer, built with React Router and TypeScript",
     tags: ["React Router", "TypeScript", "AI"],
     filterTags: ["React", "AI"],
     image: "/assets/projects/rendify/cover.svg",
@@ -43,8 +43,8 @@ export const projects = [
   },
   {
     id: "code-sensei",
-    title: "Code Sensei — AI Coding Tutor",
-    subtitle: "Flask · Groq LLMs",
+    title: "Code Sensei",
+    subtitle: "AI coding tutor, built with Flask and Groq",
     tags: ["Flask", "Python", "AI"],
     filterTags: ["Python", "AI"],
     image: "/assets/projects/code-sensei/cover.jpg",
@@ -76,7 +76,7 @@ export const projects = [
   {
     id: "favourite-student-list",
     title: "Favourite Student List",
-    subtitle: "React.js · Context API",
+    subtitle: "React app using the Context API",
     tags: ["React", "Tailwind", "Context API"],
     filterTags: ["React", "Tailwind"],
     image: "/assets/projects/favourite-student-list/cover.png",
@@ -102,7 +102,7 @@ export const projects = [
   {
   id: "weather-report-app",
   title: "Weather Report App",
-  subtitle: "React Weather Application",
+  subtitle: "React weather app using OpenWeatherMap",
   tags: ["React", "Axios", "Tailwind CSS"],
   filterTags: ["React", "API Integration"],
   image: "/assets/projects/weather-report/cover.png",
@@ -135,9 +135,9 @@ export const projects = [
   {
     id: "redstore",
     title: "RedStore",
-    subtitle: "Responsive E-Commerce Website",
+    subtitle: "Static storefront with live search",
     tags: ["JavaScript", "HTML", "CSS"],
-    filterTags: ["JavaScript"],
+    filterTags: ["JavaScript", "Tailwind"],
     image: "/assets/projects/redstore/cover.png",
     gallery: [],
     liveUrl: "https://prabhhhuu.github.io/RedStore-ecommerce/",

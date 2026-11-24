@@ -1,41 +1,62 @@
 import React from "react";
-import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from "react-icons/fi";
+import { FiArrowUp } from "react-icons/fi";
 import { profile } from "../../data/profile";
 import { navSocial } from "../../styles/classes";
 
+/**
+ * Footer as a drawing title block: name, role, place, date — the sheet's
+ * identification strip, then a thin rule and the utility line.
+ */
 export default function Footer() {
   const year = new Date().getFullYear();
+  const updated = new Date().toLocaleDateString("en-GB", { month: "short", year: "numeric" });
+
+  const fields = [
+    ["Name", profile.name],
+    ["Role", "Full-stack developer"],
+    ["Based in", profile.location],
+    ["Updated", updated],
+  ];
 
   const backToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="border-t border-line py-10 mt-24">
-      <div className="w-full max-w-shell mx-auto px-6 flex items-center justify-between gap-6 flex-wrap">
-        <p className="m-0 text-sm">
-          © {year} {profile.name} · Built with React
-        </p>
+    <footer className="mt-20 border-t border-line">
+      <div className="w-full max-w-shell mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-6">
+        {fields.map(([label, value]) => (
+          <div key={label}>
+            <p className="annotation m-0">{label}</p>
+            <p className="m-0 mt-1 text-[0.95rem] text-body">{value}</p>
+          </div>
+        ))}
+      </div>
 
-        <div className="flex gap-2">
-          <a className={navSocial} href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub profile">
-            <FiGithub />
-          </a>
-          <a className={navSocial} href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
-            <FiLinkedin />
-          </a>
-          <a className={navSocial} href={profile.socials.email} aria-label="Send email">
-            <FiMail />
-          </a>
+      <div className="border-t border-line">
+        <div className="w-full max-w-shell mx-auto px-6 py-5 flex items-center justify-between gap-4 flex-wrap">
+          <p className="annotation m-0">
+            © {year} {profile.name}
+          </p>
+
+          <div className="flex items-center gap-4">
+            <a className="annotation hover:text-accent" href={profile.socials.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a className="annotation hover:text-accent" href={profile.socials.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a className="annotation hover:text-accent" href={profile.socials.email}>
+              Email
+            </a>
+            <button
+              type="button"
+              className={`${navSocial} border-line-strong`}
+              onClick={backToTop}
+              aria-label="Back to top"
+            >
+              <FiArrowUp />
+            </button>
+          </div>
         </div>
-
-        <button
-          type="button"
-          className="inline-flex items-center gap-1.5 bg-transparent border border-line rounded-full text-muted px-3.5 py-2 text-[0.85rem] font-semibold cursor-pointer transition-all duration-300 ease-signal hover:text-accent hover:border-accent hover:-translate-y-0.5"
-          onClick={backToTop}
-          aria-label="Back to top"
-        >
-          <FiArrowUp />
-          <span>Top</span>
-        </button>
       </div>
     </footer>
   );

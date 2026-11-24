@@ -6,9 +6,8 @@ import { profile } from "../../data/profile";
 import { card, projectLink, tagList } from "../../styles/classes";
 
 /**
- * Card for the projects grid. Shows a thumbnail when available,
- * otherwise a branded fallback. Links to the detail page; live/code
- * links appear when the project provides them.
+ * Project entry as a sheet detail: full-bleed image, hairline frame,
+ * no shadow, no lift. Links read as plain words.
  */
 export default function ProjectCard({ project }) {
   const { id, title, subtitle, short, tags, image, liveUrl, repoUrl } = project;
@@ -16,15 +15,11 @@ export default function ProjectCard({ project }) {
   const showImage = image && !imgError;
 
   return (
-    <article className={`${card} flex flex-col`}>
-      <Link
-        to={`/projects/${id}`}
-        className="block"
-        aria-label={`View ${title} case study`}
-      >
+    <article className={`${card} group`}>
+      <Link to={`/projects/${id}`} className="block" aria-label={`Open ${title}`}>
         {showImage ? (
           <img
-            className="aspect-video w-full object-cover bg-accent-soft"
+            className="aspect-[16/10] w-full object-cover border-b border-line"
             src={image}
             alt={`${title} screenshot`}
             loading="lazy"
@@ -32,25 +27,26 @@ export default function ProjectCard({ project }) {
           />
         ) : (
           <div
-            className="aspect-video w-full flex flex-col items-center justify-center gap-2 text-accent"
-            style={{ background: "linear-gradient(135deg, var(--accent-soft), transparent)" }}
+            className="aspect-[16/10] w-full flex flex-col items-center justify-center gap-2 text-accent border-b border-line"
             aria-hidden="true"
           >
-            <FiImage className="text-4xl" />
-            <span className="font-display font-bold text-[1.05rem] text-body">{title}</span>
-            <span className="text-muted text-xs">screenshot coming soon</span>
+            <FiImage className="text-3xl" />
+            <span className="text-body text-[0.95rem]">{title}</span>
           </div>
         )}
       </Link>
 
-      <div className="p-6 flex flex-col gap-4 flex-1">
+      <div className="p-5 flex flex-col gap-3 flex-1">
         <div>
-          <h3 className="m-0 text-[1.15rem]">
-            <Link to={`/projects/${id}`} className="text-body hover:text-accent transition-colors duration-300">
+          <h3 className="m-0 text-[1.16rem]">
+            <Link
+              to={`/projects/${id}`}
+              className="text-body underline decoration-transparent underline-offset-4 group-hover:decoration-accent"
+            >
               {title}
             </Link>
           </h3>
-          <p className="text-[0.85rem] text-muted mt-0.5 mb-0">{subtitle}</p>
+          <p className="annotation mt-1 mb-0">{subtitle}</p>
         </div>
 
         <p className="text-[0.93rem] m-0">{short}</p>
@@ -61,9 +57,9 @@ export default function ProjectCard({ project }) {
           ))}
         </div>
 
-        <div className="flex gap-4 mt-auto">
+        <div className="flex gap-4 mt-auto pt-1">
           <Link to={`/projects/${id}`} className={projectLink}>
-            Case study →
+            Case study
           </Link>
           {liveUrl ? (
             <a className={projectLink} href={liveUrl} target="_blank" rel="noreferrer">
@@ -76,13 +72,8 @@ export default function ProjectCard({ project }) {
             </a>
           ) : null}
           {!liveUrl && !repoUrl ? (
-            <a
-              className={projectLink}
-              href={profile.socials.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FiGithub aria-hidden="true" /> More on GitHub
+            <a className={projectLink} href={profile.socials.github} target="_blank" rel="noreferrer">
+              <FiGithub aria-hidden="true" /> GitHub
             </a>
           ) : null}
         </div>

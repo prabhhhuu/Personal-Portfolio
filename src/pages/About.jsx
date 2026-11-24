@@ -10,12 +10,11 @@ import { sectionTitle } from "../styles/classes";
 
 export default function About() {
   return (
-    <div className="pt-[calc(62px+4rem)] min-h-screen">
+    <div className="pt-[calc(64px+3.5rem)] min-h-screen">
       <div className="w-full max-w-shell mx-auto px-6">
         <SectionReveal>
           <SectionHeading
-            kicker="About"
-            title="Who I am"
+            title="About"
             subtitle="Full-stack developer who enjoys both sides of the stack — component-based React UIs on the front, Node.js services behind them."
           />
         </SectionReveal>
@@ -40,7 +39,7 @@ export default function About() {
               <h3>Skills</h3>
               {skillGroups.map((group) => (
                 <div
-                  className="bg-elevated border border-line rounded-card p-6"
+                  className="bg-elevated border border-line p-6"
                   key={group.id}
                 >
                   <h4 className="text-base mb-4">{group.title}</h4>

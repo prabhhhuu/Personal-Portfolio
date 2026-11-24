@@ -19,24 +19,20 @@ export default function Navbar() {
   const close = () => setOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-[62px] bg-[color-mix(in_srgb,var(--bg)_82%,transparent)] backdrop-blur-[10px] border-b border-line transition-colors duration-300 ease-signal">
+    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-[color-mix(in_srgb,var(--bg)_88%,transparent)] backdrop-blur-[8px] border-b border-line transition-colors duration-200">
       <div className="w-full max-w-shell mx-auto px-6 h-full flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2 font-display font-bold text-body text-[1.05rem] hover:text-accent" onClick={close}>
-          <span
-            className="inline-flex items-center justify-center w-[30px] h-[30px] rounded-lg bg-accent-soft text-accent text-[0.85rem] font-bold"
-            aria-hidden="true"
-          >
-            &lt;/&gt;
-          </span>
-          <span className="brand-name">Sakthi Prabhu</span>
+        <Link
+          to="/"
+          className="font-display font-semibold tracking-[-0.03em] text-body text-[1.05rem] hover:text-accent"
+          onClick={close}
+        >
+          {profile.name}
         </Link>
 
         <nav
-          className={`max-md:fixed max-md:top-[62px] max-md:left-0 max-md:right-0 max-md:flex-col max-md:items-stretch max-md:bg-elevated max-md:border-b max-md:border-line max-md:p-6 max-md:gap-4 max-md:transition-all max-md:duration-300 max-md:ease-signal max-md:-translate-y-3 max-md:opacity-0 max-md:invisible ${
-            open
-              ? "max-md:translate-y-0 max-md:opacity-100 max-md:visible"
-              : ""
-          } flex items-center gap-6`}
+          className={`max-md:fixed max-md:top-16 max-md:left-0 max-md:right-0 max-md:flex-col max-md:items-stretch max-md:bg-elevated max-md:border-b max-md:border-line max-md:p-6 max-md:gap-4 ${
+            open ? "max-md:flex" : "max-md:hidden"
+          } flex items-center gap-7`}
           aria-label="Primary"
         >
           {links.map((link) => (
@@ -45,7 +41,7 @@ export default function Navbar() {
               to={link.to}
               end={link.end}
               className={({ isActive }) =>
-                `relative py-1 font-medium text-muted hover:text-body ${
+                `nav-link relative py-1 text-[0.95rem] font-medium text-muted hover:text-body ${
                   isActive ? "active text-body" : ""
                 }`
               }
@@ -54,26 +50,46 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
-          <div className="max-md:border-l-0 max-md:ml-0 max-md:pl-0 max-md:justify-start flex items-center gap-2 ml-2 pl-4 border-l border-line">
-            <a className={navSocial} href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub profile">
+
+          <div className="max-md:border-l-0 max-md:ml-0 max-md:pl-0 max-md:border-t max-md:border-line max-md:pt-4 flex items-center gap-1 ml-1 pl-4 border-l border-line">
+            <a
+              className={navSocial}
+              href={profile.socials.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
               <FiGithub />
             </a>
-            <a className={navSocial} href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+            <a
+              className={navSocial}
+              href={profile.socials.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
               <FiLinkedin />
             </a>
-            <a className={navSocial} href={profile.resumePath} target="_blank" rel="noreferrer" aria-label="Download resume (PDF)" title="Download resume">
+            <a
+              className={navSocial}
+              href={profile.resumePath}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Resume (PDF)"
+              title="Resume (PDF)"
+            >
               <FiFileText />
             </a>
-            <a className={navSocial} href={profile.socials.email} aria-label="Send email">
+            <a className={navSocial} href={profile.socials.email} aria-label="Email">
               <FiMail />
             </a>
+            <ThemeToggle />
           </div>
-          <ThemeToggle />
         </nav>
 
         <button
           type="button"
-          className="md:hidden inline-flex bg-transparent border-none text-body text-2xl cursor-pointer p-1.5"
+          className="md:hidden inline-flex bg-transparent border border-line text-body text-xl cursor-pointer p-1.5"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((o) => !o)}

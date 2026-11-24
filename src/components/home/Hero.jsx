@@ -1,104 +1,94 @@
 import React, { useState } from "react";
-import { FiArrowDown } from "react-icons/fi";
 import Button from "../common/Button";
 import { profile } from "../../data/profile";
-import { heroGreeting } from "../../styles/classes";
 
 /**
- * Reusable hero block: greeting, name, role, tagline, CTAs and stats.
- * Used full-height on Home; `compact` variant for section tops.
+ * Hero as a sheet: the name is set on two lines at display width, the
+ * portrait sits in a frame with crop marks, and a legend strip closes the
+ * composition along the bottom rule.
  */
 export default function Hero({ compact = false }) {
   const { name, role, tagline } = profile;
   const [avatarError, setAvatarError] = useState(false);
-  const AVATAR_SRC = "/assets/avatar.webp"; // transparent-background portrait
 
-  const stats = [
-    { value: "4+", label: "Deployed projects" },
-    { value: "2", label: "Internships" },
-    { value: "1", label: "Open-source contribution" },
-  ];
+  const [firstName, ...rest] = name.split(" ");
+  const lastName = rest.join(" ");
 
   if (compact) {
     return (
       <div className="mb-10">
-        <p className={heroGreeting}>{tagline}</p>
         <h1>{name}</h1>
+        <p className="annotation mb-0">{role}</p>
       </div>
     );
   }
 
   return (
-    <section
-      className="hero-glow min-h-[calc(100vh-62px)] flex items-center pt-[62px]"
-      aria-label="Introduction"
-    >
-      <div className="w-full max-w-shell mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] items-center gap-16 text-center lg:text-left">
-        <div className="hero-copy max-lg:mx-auto">
-          <p className={heroGreeting}>Hi, my name is</p>
-          <h1 className="text-[clamp(2.4rem,6vw,4rem)] mb-2">{name}.</h1>
-          <p className="font-display text-[clamp(1.2rem,2.5vw,1.7rem)] text-muted mb-6">
-            {role} · React.js · Node.js
-          </p>
-          <p className="max-w-[540px] text-[1.05rem] mb-10 max-lg:mx-auto">
-            {tagline}
-          </p>
+    <section className="flex flex-col pt-14 lg:pt-20" aria-label="Introduction">
+      <div className="flex-1 flex items-center pb-16 lg:pb-20">
+        <div className="w-full max-w-shell mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-10 lg:gap-14 items-center">
+          <div>
+            <h1 className="hero-name m-0 text-[clamp(2.9rem,7.2vw,6rem)]">
+              <span className="block">{firstName}</span>
+              <span className="block">{lastName}</span>
+            </h1>
 
-          <div className="flex flex-wrap gap-4 mb-10 max-lg:justify-center">
-            <Button to="/projects">View my work</Button>
-            <Button to="/contact" variant="outline">
-              Get in touch
-            </Button>
+            <p className="mt-8 mb-0 max-w-[42ch] text-[1.06rem]">{tagline}</p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button to="/projects">See projects</Button>
+              <Button to="/contact" variant="outline">
+                Write to me
+              </Button>
+            </div>
           </div>
 
-          <div className="flex gap-10 flex-wrap max-lg:justify-center">
-            {stats.map((stat) => (
-              <div className="hero-stat" key={stat.label}>
-                <div className="font-display text-[1.9rem] font-semibold leading-none text-body">
-                  {stat.value}
-                </div>
-                <div className="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-muted mt-2">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
+          <figure className="m-0 relative justify-self-center lg:justify-self-end w-full max-w-[330px]">
+            <span
+              className="absolute -left-2.5 -top-2.5 w-7 h-7 border-l border-t border-accent"
+              aria-hidden="true"
+            />
+            <span
+              className="absolute -right-2.5 -top-2.5 w-7 h-7 border-r border-t border-accent"
+              aria-hidden="true"
+            />
+            <span
+              className="absolute -left-2.5 -bottom-2.5 w-7 h-7 border-l border-b border-accent"
+              aria-hidden="true"
+            />
+            <span
+              className="absolute -right-2.5 -bottom-2.5 w-7 h-7 border-r border-b border-accent"
+              aria-hidden="true"
+            />
 
-          <div
-            className="inline-flex items-center gap-2 text-muted text-sm mt-10 animate-bob max-lg:mx-auto lg:mx-0"
-            aria-hidden="true"
-          >
-            <FiArrowDown />
-            <span>Scroll to explore</span>
-          </div>
-        </div>
-
-        <div className="flex justify-center max-lg:order-first">
-          <div className="avatar-ring relative w-[min(320px,70vw)] max-lg:w-[min(220px,60vw)] aspect-square rounded-full p-1.5">
-            <div
-              className="relative z-[1] w-full h-full rounded-full overflow-hidden border-[6px] border-bg flex items-center justify-center"
-              style={{
-                background:
-                  "radial-gradient(circle at 50% 28%, var(--accent-soft), transparent 68%), var(--bg-elevated)",
-              }}
-            >
+            <div className="border border-line bg-elevated p-3">
               {!avatarError ? (
                 <img
-                  className="w-full h-full object-contain object-[center_bottom] pt-[6%] transition-transform duration-300 ease-signal hover:scale-[1.03]"
-                  src={AVATAR_SRC}
+                  className="w-full aspect-[4/5] object-contain object-bottom"
+                  src="/assets/avatar.webp"
                   alt={`${name} portrait`}
                   onError={() => setAvatarError(true)}
                 />
               ) : (
-                <span
-                  className="font-display text-[clamp(3rem,8vw,4.5rem)] font-bold text-accent tracking-[0.02em]"
+                <div
+                  className="w-full aspect-[4/5] flex items-center justify-center font-display text-6xl text-accent"
                   aria-hidden="true"
                 >
                   SP
-                </span>
+                </div>
               )}
             </div>
-          </div>
+          </figure>
+        </div>
+      </div>
+
+      <div className="border-t border-line">
+        <div className="w-full max-w-shell mx-auto px-6 py-4 flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2">
+          <span className="annotation">Chennai, India</span>
+          <span className="annotation">Open to full-time roles</span>
+          <span className="annotation">
+            Four deployed apps, two internships, one open-source contribution
+          </span>
         </div>
       </div>
     </section>

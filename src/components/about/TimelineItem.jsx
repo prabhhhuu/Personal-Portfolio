@@ -16,11 +16,11 @@ export default function TimelineItem({ entry }) {
   return (
     <li className="relative pb-10 last:pb-0">
       <span
-        className="absolute -left-[23px] top-1.5 w-3 h-3 rounded-full bg-accent shadow-[0_0_0_4px_var(--accent-soft)]"
+        className="absolute -left-[23px] top-2 w-2 h-2 bg-accent"
         aria-hidden="true"
       />
       <div className="timeline-content">
-        <span className="text-xs font-semibold text-accent uppercase tracking-[0.04em]">
+        <span className="annotation text-accent">
           {entry.period}
         </span>
         <h3 className="mt-1 mb-0.5 text-[1.05rem]">{entry.title}</h3>

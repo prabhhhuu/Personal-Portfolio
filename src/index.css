@@ -2,67 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================
-   Base + design tokens — Signal Portfolio
-   The CSS custom properties remain the source
-   of truth; Tailwind utilities reference them.
-   ============================================ */
+/* ============================================================
+   Drawing set — the portfolio as an engineering sheet.
+   Cyanotype ground, drafting-red annotations, square geometry.
+   Tokens first; every utility resolves against them.
+   ============================================================ */
 
 :root {
-  /* Spacing, layout, motion tokens (colors below) */
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2.5rem;
   --space-6: 4rem;
   --space-7: 6rem;
-  --nav-height: 62px;
+  --nav-height: 64px;
 
-  --radius: 10px;
-  --radius-lg: 16px;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.14);
-  --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.2);
+  --radius: 0px;
+  --radius-lg: 0px;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur: 300ms;
+  --dur: 220ms;
 
-  /* Light theme (default) — warm paper, ink text, ember accent */
-  --bg: #f7f4ed;
-  --bg-elevated: #fffdf7;
-  --text: #171410;
-  --text-muted: #6a6455;
-  --accent: #c2410c;
-  --accent-strong: #97350a;
-  --on-accent: #fffdf7;
-  --accent-soft: rgba(194, 65, 12, 0.1);
-  --border: #e3dccd;
-  --dot: rgba(23, 20, 16, 0.06);
-  --hero-glow: radial-gradient(
-    640px circle at 84% 8%,
-    rgba(194, 65, 12, 0.12),
-    transparent 62%
-  );
+  /* Printed sheet (light) */
+  --bg: #edf1f4;
+  --bg-elevated: #fafbfc;
+  --text: #0c2a43;
+  --text-muted: #4d6679;
+  --accent: #ae2a16;
+  --accent-strong: #8a2011;
+  --on-accent: #fdfcfb;
+  --accent-soft: rgba(174, 42, 22, 0.08);
+  --border: #c9d5de;
+  --border-strong: #9bafbe;
+  --grid-line: rgba(12, 42, 67, 0.05);
+  --hero-glow: none;
 }
 
 [data-theme="dark"] {
-  --bg: #0d0c0a;
-  --bg-elevated: #17140f;
-  --text: #f5f1e6;
-  --text-muted: #a49c8a;
-  --accent: #ff8a5b;
-  --accent-strong: #ffb392;
-  --on-accent: #1a1109;
-  --accent-soft: rgba(255, 138, 91, 0.13);
-  --border: #2c2720;
-  --dot: rgba(255, 255, 255, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.6);
-  --hero-glow: radial-gradient(
-    640px circle at 84% 8%,
-    rgba(255, 138, 91, 0.15),
-    transparent 62%
-  );
+  /* Cyanotype */
+  --bg: #0b2b45;
+  --bg-elevated: #103a59;
+  --text: #e9f1f7;
+  --text-muted: #a3bccf;
+  --accent: #ff7a59;
+  --accent-strong: #ff9c82;
+  --on-accent: #14202b;
+  --accent-soft: rgba(255, 122, 89, 0.12);
+  --border: #26496a;
+  --border-strong: #3b6386;
+  --grid-line: rgba(233, 241, 247, 0.055);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -70,17 +60,10 @@
     --dur: 0ms;
   }
 
-  .reveal,
-  .reveal-left,
-  .reveal-right {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .avatar-ring,
-  .scroll-cue {
+  .hero-name,
+  .skill-fill {
     animation: none !important;
+    transition: none !important;
   }
 }
 
@@ -97,14 +80,15 @@
 
   body {
     margin: 0;
-    font-family: "Instrument Sans", "Segoe UI", sans-serif;
+    font-family: "Archivo", "Segoe UI", sans-serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.62;
     color: var(--text);
     background-color: var(--bg);
-    /* Fine dot grid — atmosphere instead of a flat fill. */
-    background-image: radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0);
-    background-size: 26px 26px;
+    /* Drafting paper: a 32px grid, barely there. */
+    background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 32px 32px;
     -webkit-font-smoothing: antialiased;
     transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
   }
@@ -113,30 +97,33 @@
   h2,
   h3,
   h4 {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: "Archivo", "Segoe UI", sans-serif;
+    font-variation-settings: "wdth" 118;
     font-weight: 600;
-    font-variation-settings: "opsz" 96;
-    letter-spacing: -0.02em;
-    line-height: 1.06;
+    letter-spacing: -0.028em;
+    line-height: 0.98;
     margin: 0 0 var(--space-3);
     color: var(--text);
+    text-wrap: balance;
   }
 
   h1 {
-    font-size: clamp(2.4rem, 5.6vw, 3.8rem);
+    font-size: clamp(2.7rem, 7.4vw, 5rem);
   }
 
   h2 {
-    font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.18rem;
+    line-height: 1.2;
   }
 
   p {
     margin: 0 0 var(--space-3);
     color: var(--text-muted);
+    max-width: 68ch;
   }
 
   a {
@@ -165,30 +152,37 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 
   ::selection {
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
   }
 }
 
-/* ============================================
-   Component-layer: only what can't be expressed
-   as Tailwind utilities (pseudo-elements,
-   keyframes tie-ins, gradient text, reveals).
-   ============================================ */
+/* ============================================================
+   Component layer — only what utilities can't express.
+   ============================================================ */
 @layer components {
+  /* Drafting annotation: metadata and captions, never a heading eyebrow. */
+  .annotation {
+    font-family: "Archivo", "Segoe UI", sans-serif;
+    font-variation-settings: "wdth" 96;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+
   .nav-link::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -2px;
+    bottom: -4px;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background: var(--accent);
     transform: scaleX(0);
     transform-origin: left;
@@ -200,124 +194,71 @@
     transform: scaleX(1);
   }
 
-  .avatar-ring::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    border-radius: 50%;
-    background: conic-gradient(
-      from 120deg,
-      var(--accent),
-      transparent 40%,
-      var(--accent) 70%,
-      transparent
-    );
-    animation: spin-slow 14s linear infinite;
-  }
-
-  .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  .kicker::before {
-    content: "";
-    width: 22px;
-    height: 1px;
-    background: currentColor;
-    flex: none;
-  }
-
-  .section-title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border), transparent 85%);
+  .section-title {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
   }
 
   .cert-list li::before {
-    content: "✓";
+    content: "";
     position: absolute;
     left: 0;
-    color: var(--accent);
+    top: 0.62em;
+    width: 6px;
+    height: 1px;
+    background: var(--accent);
   }
 
   .timeline::before {
     content: "";
     position: absolute;
-    left: 6px;
-    top: 6px;
-    bottom: 6px;
-    width: 2px;
+    left: 3px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
     background: var(--border);
   }
 
   .timeline-points li::before {
-    content: "▸";
+    content: "";
     position: absolute;
     left: 0;
-    color: var(--accent);
+    top: 0.65em;
+    width: 6px;
+    height: 1px;
+    background: var(--accent);
   }
 
   .notfound-code {
-    font-family: "Fraunces", Georgia, serif;
-    font-size: clamp(5rem, 18vw, 9rem);
+    font-family: "Archivo", "Segoe UI", sans-serif;
+    font-variation-settings: "wdth" 122;
+    font-size: clamp(5rem, 18vw, 10rem);
     font-weight: 700;
-    line-height: 1;
-    background: linear-gradient(120deg, var(--accent), var(--accent-strong));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    color: var(--accent);
   }
 
   .skill-fill {
     height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    background: var(--accent);
     width: 0;
-    transition: width 900ms var(--ease);
+    transition: width 700ms var(--ease);
   }
 
-  .hero-glow {
-    background-image: var(--hero-glow);
-  }
-
-/* Scroll-reveal states (toggled by useScrollReveal) */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 600ms var(--ease), transform 600ms var(--ease);
-    will-change: opacity, transform;
-  }
-
-  .reveal-left {
-    transform: translateX(-28px);
-  }
-
-  .reveal-right {
-    transform: translateX(28px);
-  }
-
-  .reveal-visible {
-    opacity: 1;
-    transform: translate(0, 0);
+  /* The one orchestrated moment: the name sets from the baseline up. */
+  .hero-name {
+    animation: name-set 900ms var(--ease) both;
   }
 }
 
-/* ---------- Keyframes ----------
-   Defined here at the top level because tailwind.config.js only emits
-   keyframes when a matching animate-* utility class appears in markup,
-   and the avatar ring applies its animation inside .avatar-ring::before. */
-@keyframes spin-slow {
+@keyframes name-set {
+  from {
+    clip-path: inset(0 0 105% 0);
+    opacity: 0.4;
+  }
   to {
-    transform: rotate(360deg);
+    clip-path: inset(0 0 -5% 0);
+    opacity: 1;
   }
 }

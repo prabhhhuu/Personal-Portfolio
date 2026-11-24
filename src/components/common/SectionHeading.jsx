@@ -1,13 +1,14 @@
 import React from "react";
-import { heroGreeting } from "../../styles/classes";
 
-/** Kicker + title + subtitle block used at the top of pages. */
-export default function SectionHeading({ kicker, title, subtitle }) {
+/** Page header: title, optional standfirst, hairline rule. No eyebrow label. */
+export default function SectionHeading({ title, subtitle, action }) {
   return (
-    <div className="mb-10">
-      {kicker ? <p className={heroGreeting}>{kicker}</p> : null}
-      <h1>{title}</h1>
-      {subtitle ? <p className="max-w-[620px]">{subtitle}</p> : null}
+    <div className="mb-10 border-b border-line pb-5 flex items-end justify-between gap-8 flex-wrap">
+      <div>
+        <h1 className="m-0">{title}</h1>
+        {subtitle ? <p className="mt-3 mb-0 max-w-[52ch]">{subtitle}</p> : null}
+      </div>
+      {action}
     </div>
   );
 }

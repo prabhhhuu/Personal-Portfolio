@@ -12,10 +12,10 @@ export default function SkillBar({ name, level }) {
     <div className="mb-4 last:mb-0" ref={ref}>
       <div className="flex justify-between text-[0.88rem] mb-1.5 text-body">
         <span>{name}</span>
-        <span className="text-muted text-[0.8rem]">{level}%</span>
+        <span className="annotation">{level}%</span>
       </div>
       <div
-        className="h-2 rounded-full bg-accent-soft overflow-hidden"
+        className="h-[5px] bg-accent-soft overflow-hidden"
         role="progressbar"
         aria-valuenow={level}
         aria-valuemin={0}

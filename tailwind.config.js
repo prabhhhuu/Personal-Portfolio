@@ -17,18 +17,18 @@ module.exports = {
         "accent-soft": "var(--accent-soft)",
         "on-accent": "var(--on-accent)",
         line: "var(--border)",
+        "line-strong": "var(--border-strong)",
       },
       fontFamily: {
-        display: ["Fraunces", "Georgia", "serif"],
-        body: ["Instrument Sans", "Segoe UI", "sans-serif"],
-        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+        display: ["Archivo", "Segoe UI", "sans-serif"],
+        body: ["Archivo", "Segoe UI", "sans-serif"],
       },
       maxWidth: {
         shell: "1140px",
       },
       borderRadius: {
-        DEFAULT: "10px",
-        card: "16px",
+        DEFAULT: "0px",
+        card: "0px",
       },
       boxShadow: {
         sm: "var(--shadow-sm)",
